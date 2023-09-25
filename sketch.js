@@ -664,42 +664,42 @@ function createPlatforms(x, y, length)
 
 function enemy(x, y, range)
 {
-    this.x = x;
-    this.y = y;
-    this.range = range;
+    enemies.x = -500;
+    enemies.y = y;
+    enemies.range = range;
 
-    this.currentX = x;
-    this.inc = 1;
+    enemies.currentX = x;
+    enemies.inc = 1;
 
-    this.update = function()
+    enemies.update = function()
     {
-        this.currentX += this.inc
+        this.currentX += enemies.inc
 
-        if(this.currentX >= this.x + this.range)
+        if(enemies.currentX >= enemies.x + enemies.range)
         {
-            this.inc = -1;
+            enemies.inc = -1;
         }
-        else if(this.currentX < this.x)
+        else if(enemies.currentX < enemies.x)
         {
-            this.inc = 1;
+            enemies.inc = 1;
         }
     }
 
-    this.draw = function()
+    enemies.draw = function()
     {
-        this.update();
+        enemies.update();
         fill(0);
-        ellipse(this.currentX, this.y, 50, 50);
+        ellipse(enemies.currentX, enemies.y, 50, 50);
         fill(255);
-        ellipse(this.currentX - 10, this.y -5, 10, 10);
-        ellipse(this.currentX + 10, this.y -5, 10, 10);
+        ellipse(enemies.currentX - 10, enemies.y -5, 10, 10);
+        ellipse(enemies.currentX + 10, enemies.y -5, 10, 10);
         fill(255);
-        rect(this.currentX - 8, this.y + 8, 18, 8);
+        rect(enemies.currentX - 8, enemies.y + 8, 18, 8);
     }
 
-    this.checkContact = function(gameChar_x, gameChar_y)
+    enemies.checkContact = function(gameChar_x, gameChar_y)
     {
-        var d = dist(gameChar_x, gameChar_y, this.currentX, this.y)
+        var d = dist(gameChar_x, gameChar_y, enemies.currentX, enemies.y)
 
         if(d < 50)
         {
